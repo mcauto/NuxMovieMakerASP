@@ -34,7 +34,7 @@
     <tr>
         <td class="auto-style5" colspan="3"><asp:TextBox ID="TextBox1" runat="server" style="z-index: 1; left: 458px; top: 409px; position: absolute; width: 245px; height: 20px"></asp:TextBox>
             <asp:Label ID="Label4" runat="server" Font-Bold="True" Font-Italic="False" Font-Overline="False" Font-Size="XX-Large" Font-Strikeout="False" Font-Underline="False" ForeColor="#996633" style="z-index: 1; left: 513px; top: 259px; position: absolute" Text="NuxMovieMaker"></asp:Label>
-            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Default3.aspx" style="z-index: 1; left: 557px; top: 526px; position: absolute">Create New Account</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Registration.aspx" style="z-index: 1; left: 557px; top: 526px; position: absolute">Create New Account</asp:HyperLink>
         </td>
     </tr>
     <tr>
