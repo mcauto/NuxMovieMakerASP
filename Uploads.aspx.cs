@@ -7,13 +7,16 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using System.Web.SessionState;
+using System.Web.UI.HtmlControls;
+
 public partial class Uploads : System.Web.UI.Page
 {
+
     private MySqlConnection conn;
     private MySqlCommand cmd;
     string connStr = String.Format("server=203.241.249.106;user id=root;pwd=ghkdlxld;database=PRACTICE");
 
-    //경로 : /var/www/uploads
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -82,20 +85,6 @@ public partial class Uploads : System.Web.UI.Page
                         }
                     }
                     ds.Reset();
-                    /*
-                    sql = "SELECT * FROM BACKG_PLACE";
-                    adpt = new MySqlDataAdapter(sql, conn);
-                    adpt.Fill(ds, "BACKG_PLACE");
-                    if (ds.Tables.Count > 0)
-                    {
-                        foreach (DataRow r in ds.Tables[0].Rows)
-                        {
-                            string list_str = r["INANDOUT"] + "";
-                            ListItem list = new ListItem(list_str);
-                            EraList.Items.Add(list);
-                        }
-                    }
-                    ds.Reset();*/
 
 
                     sql = "SELECT * FROM BACKG_SEASON";
@@ -252,12 +241,23 @@ public partial class Uploads : System.Web.UI.Page
 
     protected void Button3_Click(object sender, EventArgs e)
     {
-        if (FileUpload1.HasFile)
+        if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
         {
-            string savePath = "C:\\Users\\JK\\Test\\";
-            string fileName = FileUpload1.FileName;
-
-            FileUpload1.PostedFile.SaveAs(@"C:\Users\JK\Test\\" + "file1.jpeg");
+            string fn = System.IO.Path.GetFileName(FileUpload1.PostedFile.FileName);
+            string SaveLocation = Server.MapPath("Data") + "\\" + fn;
+            try
+            {
+                FileUpload1.PostedFile.SaveAs(SaveLocation);
+                Label1.Text = "The file has been uploaded.";
+            }
+            catch (Exception ex)
+            {
+                Label1.Text = "Error: " + ex.Message;
+            }
+        }
+        else
+        {
+            Label1.Text = "Please select a file to upload.";
         }
     }
 }
