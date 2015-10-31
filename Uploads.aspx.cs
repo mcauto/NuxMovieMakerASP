@@ -12,6 +12,9 @@ using System.Web.UI.HtmlControls;
 using DirectShowLib;
 using DirectShowLib.DES;
 using System.Runtime.InteropServices;
+using System.Net;
+using System.IO;
+using System.Text;
 
 public partial class Uploads : System.Web.UI.Page
 {
@@ -234,13 +237,16 @@ public partial class Uploads : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         //이제 수정할거 -> 올릴때 movie1 , 2 , 3 .... 이런식으로 되도록
-        
+                
         //파일 이름
-        string fileName = FileUpload1.PostedFile.FileName;
+        string fileName = FileUpload1.FileName;
+
         //파일 경로
-        string filePath = Server.MapPath("Data");
+        string filePath = FileUpload1.PostedFile.FileName;
+
+        string[] fileExtention = fileName.Split('.');
         //파일 확장자
-        string fileInfo = FileUpload1.PostedFile.ContentType;
+        string fileInfo = fileExtention[1];
 
         conn = new MySqlConnection(connStr);
         try
@@ -253,7 +259,7 @@ public partial class Uploads : System.Web.UI.Page
             //FILE_PATH (경로) ㅇ
             //THUMBNAIL_PATH (널)
             //MADE_BY (ID)
-            
+
             conn.Open();
 
             int count = 0;
@@ -289,6 +295,8 @@ public partial class Uploads : System.Web.UI.Page
         {
             Label1.Text = "Error" + ex.Message.ToString();
         }
+
+
         //VIDEO 테이블에
         /*
         KEYWORD
@@ -310,25 +318,32 @@ public partial class Uploads : System.Web.UI.Page
 
 
 
+        /*
+                if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
+                {
+                    string fn = System.IO.Path.GetFileName(fileName);
 
-        if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
+                    string SaveLocation = filePath + "\\" + fn;
+                    try
+                    {
+                        FileUpload1.PostedFile.SaveAs(SaveLocation);
+                        Label1.Text += "The file has been uploaded.";
+                    }
+                    catch (Exception ex)
+                    {
+                        //Label1.Text = "Error: " + ex.Message;
+                    }
+                }
+                else
+                {
+                    //Label1.Text = "Please select a file to upload.";
+                } */
+
+
+        using (WebClient client = new WebClient())
         {
-            string fn = System.IO.Path.GetFileName(fileName);
-            
-            string SaveLocation = filePath + "\\" + fn;
-            try
-            {
-                FileUpload1.PostedFile.SaveAs(SaveLocation);
-                //Label1.Text += "The file has been uploaded.";
-            }
-            catch (Exception ex)
-            {
-                //Label1.Text = "Error: " + ex.Message;
-            }
-        }
-        else
-        {
-            //Label1.Text = "Please select a file to upload.";
+            client.Credentials = new NetworkCredential("dcs", "ghkdlxld");
+            client.UploadFile("ftp://203.241.249.106" + "/Data" + new FileInfo(filePath).Name, "STOR", filePath);
         }
     }
     private string getDurationMedia(String FileName)
@@ -369,8 +384,8 @@ public partial class Uploads : System.Web.UI.Page
 
     protected void Button2_Click(object sender, EventArgs e)
     {
-        Button2.Text = getDurationMedia("C:\\Users\\Administrator\\Desktop\\NuxMovieMakerASP\\wonbin.mp4");
-
-
+        
+        Label1.Text = Path.GetFileName(FileUpload1.PostedFile.FileName);
+        //Button2.Text = getDurationMedia("C:\\test\\Wildlife.wmv");          
     }
 }
