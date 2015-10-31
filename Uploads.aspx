@@ -39,20 +39,15 @@
         font-family: "맑은 고딕", Arial, Helvetica, sans-serif;
         color: #FFFFFF;
     }
-    .auto-style14 {
-        height: 22px;
-    }
     .auto-style15 {
         height: 20px;
-    }
+            background-color: #FFFFFF;
+        }
     .auto-style16 {
         height: 19px;
         background-color: #663300;
         font-family: "맑은 고딕", Arial, Helvetica, sans-serif;
         color: #FFFFFF;
-    }
-    .auto-style17 {
-        height: 23px;
     }
     .auto-style18 {
         height: 21px;
@@ -62,6 +57,17 @@
         }
         .auto-style19 {
             height: 57px;
+        }
+        .auto-style20 {
+            background-color: #FFFFFF;
+        }
+        .auto-style21 {
+            height: 23px;
+            background-color: #FFFFFF;
+        }
+        .auto-style22 {
+            height: 22px;
+            background-color: #FFFFFF;
         }
     </style>
 </asp:Content>
@@ -77,7 +83,7 @@
                     <td class="auto-style13">시간적 배경 (DAY_TIME)</td>
                 </tr>
                 <tr>
-                    <td>                        
+                    <td class="auto-style20">                        
                         <asp:DropDownList ID="DayList" runat="server" Height="16px" Width="160px">
                         </asp:DropDownList>
                     </td>
@@ -86,7 +92,7 @@
                     <td class="auto-style13">시대적 배경 (ERA)</td>
                 </tr>
                 <tr>
-                    <td>
+                    <td class="auto-style20">
                         <asp:DropDownList ID="EraList" runat="server" Height="16px" Width="160px">
                         </asp:DropDownList>
                     </td>
@@ -95,7 +101,7 @@
                     <td class="auto-style13">공간적 배경 (INANDOUT)</td>
                 </tr>
                 <tr>
-                    <td class="auto-style17">
+                    <td class="auto-style21">
                         <asp:DropDownList ID="AreaList" runat="server" AutoPostBack="True" Height="16px"  Width="160px">
                         </asp:DropDownList>
                     </td>
@@ -104,7 +110,7 @@
                     <td class="auto-style18">장소 배경 (PLACE)</td>
                 </tr>
                 <tr>
-                    <td class="auto-style14">
+                    <td class="auto-style22">
                         <asp:DropDownList ID="PlaceList" runat="server" AutoPostBack="True" Height="16px" Width="160px">
                         </asp:DropDownList>
                     </td>
@@ -113,7 +119,7 @@
                     <td class="auto-style13">계절 (SEASON)</td>
                 </tr>
                 <tr>
-                    <td class="auto-style14">
+                    <td class="auto-style22">
                         <asp:DropDownList ID="SeasonList" runat="server" Height="16px" Width="160px">
                         </asp:DropDownList>
                     </td>
@@ -122,7 +128,7 @@
                     <td class="auto-style13">연령대 (AGE)</td>
                 </tr>
                 <tr>
-                    <td class="auto-style17">
+                    <td class="auto-style21">
                         <asp:DropDownList ID="AgeList" runat="server" Height="16px" Width="160px">
                         </asp:DropDownList>
                     </td>
@@ -131,7 +137,7 @@
                     <td class="auto-style13">성별 (SEX)</td>
                 </tr>
                 <tr>
-                    <td>
+                    <td class="auto-style20">
                         <asp:DropDownList ID="SexList" runat="server" Height="16px" Width="160px">
                         </asp:DropDownList>
                     </td>
@@ -149,7 +155,7 @@
                     <td class="auto-style16">직업 (JOB)</td>
                 </tr>
                 <tr>
-                    <td>
+                    <td class="auto-style20">
                         <asp:DropDownList ID="JobList" runat="server" Height="16px" Width="160px">
                         </asp:DropDownList>
                     </td>
@@ -158,7 +164,7 @@
                     <td class="auto-style16">사건, 행동 (INCIDENT_CATE1)</td>
                 </tr>
                 <tr>
-                    <td>
+                    <td class="auto-style20">
                         <asp:DropDownList ID="IncidCList" runat="server" AutoPostBack="True" Height="16px"  Width="160px">
                         </asp:DropDownList>
                     </td>
@@ -167,7 +173,7 @@
                     <td class="auto-style16">사건, 행동 (INCIDENT)</td>
                 </tr>
                 <tr>
-                    <td>
+                    <td class="auto-style20">
                         <asp:DropDownList ID="IncidList" runat="server" AutoPostBack="True" Height="16px" Width="160px">
                         </asp:DropDownList>
                     </td>
