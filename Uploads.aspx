@@ -1,7 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Uploads.aspx.cs" Inherits="Uploads" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Uploads.aspx.cs" Inherits="Uploads"%>
+
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+
     <style type="text/css">
         .auto-style6 {
         width: 858px;
@@ -72,6 +74,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+
     <table class="auto-style6">
     <tr>
         <td class="auto-style10">
