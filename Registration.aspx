@@ -6,8 +6,8 @@
             width: 33%;
             height: 494px;
             z-index: 1;
-            left: 434px;
-            top: 107px;
+            left: 457px;
+            top: 121px;
             position: absolute;
         }
         .auto-style5 {
@@ -34,7 +34,9 @@
             <td class="auto-style5">
                 <asp:TextBox ID="TextBox1" runat="server" Width="250px"></asp:TextBox>
             </td>
-            <td>&nbsp;</td>
+            <td>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1" EnableClientScript="False" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+            </td>
         </tr>
         <tr>
             <td class="auto-style5">
@@ -46,7 +48,9 @@
             <td class="auto-style5">
                 <asp:TextBox ID="TextBox2" runat="server" Width="250px"></asp:TextBox>
             </td>
-            <td>&nbsp;</td>
+            <td>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox2" EnableClientScript="False" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+            </td>
         </tr>
         <tr>
             <td class="auto-style5">
@@ -58,7 +62,9 @@
             <td class="auto-style5">
                 <asp:TextBox ID="TextBox3" runat="server" TextMode="Password" Width="250px"></asp:TextBox>
             </td>
-            <td>&nbsp;</td>
+            <td>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TextBox3" EnableClientScript="False" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+            </td>
         </tr>
         <tr>
             <td class="auto-style5">
@@ -86,6 +92,7 @@
             </td>
             <td>
                 <asp:Label ID="Label9" runat="server" Text=" "></asp:Label>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TextBox5" EnableClientScript="False" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
@@ -98,7 +105,9 @@
             <td class="auto-style5">
                 <asp:TextBox ID="TextBox6" runat="server" Width="250px"></asp:TextBox>
             </td>
-            <td>&nbsp;</td>
+            <td>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="TextBox6" EnableClientScript="False" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+            </td>
         </tr>
         <tr>
             <td class="auto-style5">
