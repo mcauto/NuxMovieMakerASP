@@ -314,6 +314,7 @@ public partial class Uploads : System.Web.UI.Page
         if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
         {
             string fn = System.IO.Path.GetFileName(fileName);
+            
             string SaveLocation = filePath + "\\" + fn;
             try
             {
@@ -329,5 +330,47 @@ public partial class Uploads : System.Web.UI.Page
         {
             //Label1.Text = "Please select a file to upload.";
         }
+    }
+    private string getDurationMedia(String FileName)
+    {
+        var mediaDet = (IMediaDet)new MediaDet();
+        Label1.Text = FileName;
+        DsError.ThrowExceptionForHR(mediaDet.put_Filename(FileName));
+
+        // find the video stream in the file
+        int index;
+        var type = Guid.Empty;
+        for (index = 0; index < 1000 && type != MediaType.Video; index++)
+        {
+            mediaDet.put_CurrentStream(index);
+            mediaDet.get_StreamType(out type);
+        }
+
+        // retrieve some measurements from the video
+        double frameRate;
+        mediaDet.get_FrameRate(out frameRate);
+
+        var mediaType = new AMMediaType();
+        mediaDet.get_StreamMediaType(mediaType);
+        var videoInfo = (VideoInfoHeader)Marshal.PtrToStructure(mediaType.formatPtr, typeof(VideoInfoHeader));
+        DsUtils.FreeAMMediaType(mediaType);
+        var width = videoInfo.BmiHeader.Width;
+        var height = videoInfo.BmiHeader.Height;
+
+        double mediaLength;
+        mediaDet.get_StreamLength(out mediaLength);
+        var frameCount = (int)(frameRate * mediaLength);
+        var duration = frameCount / frameRate;
+
+
+
+        return duration.ToString();
+    }
+
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        Button2.Text = getDurationMedia("C:\\Users\\Administrator\\Desktop\\NuxMovieMakerASP\\wonbin.mp4");
+
+
     }
 }

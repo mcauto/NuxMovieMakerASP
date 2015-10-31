@@ -190,14 +190,15 @@
             <br />
 &nbsp;&nbsp;
             <asp:Button ID="Button1" runat="server" Text="Upload" Width="82px" OnClick="Button1_Click" />
+            <asp:Label ID="Label1" runat="server"></asp:Label>
+            <asp:Button ID="Button2" runat="server" Text="Check" Width="82px" OnClick="Button2_Click" style="height: 21px" />
         </td>
     </tr>
     <tr>
         <td class="auto-style11">
 &nbsp; </td>
         <td class="auto-style19">
-            <asp:Label ID="Label1" runat="server"></asp:Label>
-        </td>
+            &nbsp;</td>
     </tr>
 </table>
 </asp:Content>
