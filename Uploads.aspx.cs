@@ -9,6 +9,9 @@ using System.Web.UI.WebControls;
 
 using System.Web.SessionState;
 using System.Web.UI.HtmlControls;
+using DirectShowLib;
+using DirectShowLib.DES;
+using System.Runtime.InteropServices;
 
 public partial class Uploads : System.Web.UI.Page
 {

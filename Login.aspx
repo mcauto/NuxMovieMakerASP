@@ -22,7 +22,6 @@
 <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Sign In" Font-Size="Larger" style="z-index: 1; left: 727px; top: 405px; position: absolute; height: 85px; width: 99px" ForeColor="#666666" />
 <asp:Label ID="Label1" runat="server" Text=" " style="z-index: 1; left: 464px; top: 436px; position: absolute" ForeColor="Red"></asp:Label>
 &nbsp;&nbsp;&nbsp;
-<asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Default2.aspx" style="z-index: 1; left: 891px; top: 439px; position: absolute">HyperLink</asp:HyperLink>
 <br />
 <br />
 <br />

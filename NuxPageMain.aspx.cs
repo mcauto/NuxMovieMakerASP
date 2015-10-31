@@ -23,7 +23,7 @@ public partial class Default2 : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            Label1.Text = "Error";
+            Label1.Text = ex.GetBaseException() + "";
         }
 
     }
