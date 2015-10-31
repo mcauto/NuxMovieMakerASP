@@ -156,12 +156,6 @@ public partial class Uploads : System.Web.UI.Page
             }
         }
     }
-
-    protected void Button1_Click(object sender, EventArgs e)
-    {
-
-    }
-
     protected void DropDownList3_SelectedIndexChanged(object sender, EventArgs e)
     {
         conn = new MySqlConnection(connStr);
@@ -234,30 +228,103 @@ public partial class Uploads : System.Web.UI.Page
         }
     }
 
-    protected void Button2_Click(object sender, EventArgs e)
+    protected void Button1_Click(object sender, EventArgs e)
     {
+        //이제 수정할거 -> 올릴때 movie1 , 2 , 3 .... 이런식으로 되도록
+        
+        //파일 이름
+        string fileName = FileUpload1.PostedFile.FileName;
+        //파일 경로
+        string filePath = Server.MapPath("Data");
+        //파일 확장자
+        string fileInfo = FileUpload1.PostedFile.ContentType;
 
-    }
+        conn = new MySqlConnection(connStr);
+        try
+        {
+            //UPLOAD_VIDEO 테이블에
+            //VIDEO_NUM (번호) ㅇ
+            //TITLE     (파일이름) ㅇ
+            //FILE_TYPE (확장자) ㅇ
+            //RUNNING_TIME 
+            //FILE_PATH (경로) ㅇ
+            //THUMBNAIL_PATH (널)
+            //MADE_BY (ID)
+            
+            conn.Open();
 
-    protected void Button3_Click(object sender, EventArgs e)
-    {
+            int count = 0;
+            DataSet ds = new DataSet();
+            if (conn.State == ConnectionState.Open)
+            {
+                string query = "SELECT VIDEO_NUM FROM UPLOAD_VIDEO";
+                MySqlDataAdapter adpt = new MySqlDataAdapter(query, conn);
+                adpt.Fill(ds, "UPLOAD_VIDEO");
+                if (ds.Tables.Count > 0)
+                {
+                    foreach (DataRow r in ds.Tables[0].Rows)
+                    {
+                        count++;
+                    }
+                }
+                ds.Reset();
+            }
+            count++;
+
+            string sql = "INSERT INTO UPLOAD_VIDEO(VIDEO_NUM,TITLE,FILE_TYPE,RUNNING_TIME,FILE_PATH,MADE_BY,CATEGORY) VALUES(" +
+                count + ",'" + fileName + "','" + fileInfo + "','" + /*시간*/"','" + filePath + "','" + /*사용자(로그인)ID*/ "','" + "null')";
+
+            conn = new MySqlConnection(connStr);
+            cmd = new MySqlCommand(sql, conn);
+
+            conn.Open();
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+        }
+        catch (Exception ex)
+        {
+            Label1.Text = "Error" + ex.Message.ToString();
+        }
+        //VIDEO 테이블에
+        /*
+        KEYWORD
+        FILE_TYPE - 파일타입
+        RUNNING_TIME - 
+        FILE_PATH - 경로됫고
+        THUMBNAIL_PATH 
+        COUNT  - DB존재하는 파일 카운트
+
+        AGE - AgeList
+        SEX - SexList
+        JOB - JobList
+        INCIDENT - IncList
+        ERA - EraList
+        SEASON - SeasonList
+        DAY_TIME - DayList
+        PLACE - PlaceList 
+        */
+
+
+
+
         if ((FileUpload1.PostedFile != null) && (FileUpload1.PostedFile.ContentLength > 0))
         {
-            string fn = System.IO.Path.GetFileName(FileUpload1.PostedFile.FileName);
-            string SaveLocation = Server.MapPath("Data") + "\\" + fn;
+            string fn = System.IO.Path.GetFileName(fileName);
+            string SaveLocation = filePath + "\\" + fn;
             try
             {
                 FileUpload1.PostedFile.SaveAs(SaveLocation);
-                Label1.Text = "The file has been uploaded.";
+                //Label1.Text += "The file has been uploaded.";
             }
             catch (Exception ex)
             {
-                Label1.Text = "Error: " + ex.Message;
+                //Label1.Text = "Error: " + ex.Message;
             }
         }
         else
         {
-            Label1.Text = "Please select a file to upload.";
+            //Label1.Text = "Please select a file to upload.";
         }
     }
 }

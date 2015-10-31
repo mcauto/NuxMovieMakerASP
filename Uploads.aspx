@@ -187,13 +187,13 @@
             <asp:FileUpload ID="FileUpload1" runat="server" />
             <br />
             <br />
-            <asp:Button ID="Button3" runat="server" Text="UpLoad" Width="65px" OnClick="Button3_Click" style="height: 21px" />
+            <br />
 &nbsp;&nbsp;
+            <asp:Button ID="Button1" runat="server" Text="Upload" Width="82px" OnClick="Button1_Click" />
         </td>
     </tr>
     <tr>
         <td class="auto-style11">
-            <asp:Button ID="Button1" runat="server" Text="Button" Width="82px" OnClick="Button1_Click" />
 &nbsp; </td>
         <td class="auto-style19">
             <asp:Label ID="Label1" runat="server"></asp:Label>
