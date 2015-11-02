@@ -208,6 +208,38 @@ public partial class Uploads : System.Web.UI.Page
             if (conn.State == ConnectionState.Open)
             {
                 //string sql = "SELECT * FROM BACKG_PLACE WHERE INANDOUT='" + AreaList.SelectedItem.Text + "'";
+                string sql = "SELECT * FROM CHARAC_JOB";
+                MySqlDataAdapter adpt = new MySqlDataAdapter(sql, conn);
+                adpt.Fill(ds, "CHARAC_JOB");
+                if (ds.Tables.Count > 0)
+                {
+                    JobList.Items.Clear();
+                    foreach (DataRow r in ds.Tables[0].Rows)
+                    {
+                        if ((string)r["JOB_CATE1"] == JobCList.SelectedItem.Text)
+                        {
+                            string list_str = r["JOB"] + "";
+                            ListItem list = new ListItem(list_str);
+                            JobList.Items.Add(list);
+                        }
+                    }
+                }
+                ds.Reset();
+            }
+            conn.Close();
+        }
+        catch (Exception ex)
+        {
+            Label1.Text = "Error" + ex.Message.ToString();
+        }
+        conn = new MySqlConnection(connStr);
+        try
+        {
+            conn.Open();
+            DataSet ds = new DataSet();
+            if (conn.State == ConnectionState.Open)
+            {
+                //string sql = "SELECT * FROM BACKG_PLACE WHERE INANDOUT='" + AreaList.SelectedItem.Text + "'";
                 string sql = "SELECT * FROM INCIDENT";
                 MySqlDataAdapter adpt = new MySqlDataAdapter(sql, conn);
                 adpt.Fill(ds, "INCIDENT");
@@ -250,20 +282,13 @@ public partial class Uploads : System.Web.UI.Page
 
         string[] fileExtention = fileName.Split('.'); // 파일 이름을 .으로 분리        
         string fileInfo = fileExtention[1];//파일 확장자
-        
-        
+
+        string timeStr = getDurationMedia(FileUpload1.PostedFile.FileName);
+        int hours = int.Parse(timeStr) / 3600, minutes = (int.Parse(timeStr) % 3600 / 60), seconds = (int.Parse(timeStr) % 3600 % 60);
+
         conn = new MySqlConnection(connStr);
         try
         {
-            //UPLOAD_VIDEO 테이블에
-            //VIDEO_NUM (번호) ㅇ
-            //TITLE     (파일이름) ㅇ
-            //FILE_TYPE (확장자) ㅇ
-            //RUNNING_TIME 
-            //FILE_PATH (경로) ㅇ
-            //THUMBNAIL_PATH (널)
-            //MADE_BY (ID)
-
             conn.Open();
 
             int count = 0;
@@ -285,7 +310,20 @@ public partial class Uploads : System.Web.UI.Page
             count++;
 
             string sql = "INSERT INTO UPLOAD_VIDEO(VIDEO_NUM,TITLE,FILE_TYPE,RUNNING_TIME,FILE_PATH,MADE_BY,CATEGORY,THUMBNAIL_PATH) VALUES(" +
-                count + ",'" + fileName + "','" + fileInfo + "','" + /*시간*/"','" + fileName + "','" + /*사용자(로그인)ID*/ "','" + "null','" + (fileName + "_thumbnail.jpg") + "')";
+                count + ",'" + fileName + "','" + fileInfo + "','" + hours.ToString() + ":" + minutes.ToString() + ":" + seconds.ToString() + 
+                "','" + fileName + "','" + /*Session["id"].ToString() + 이거 로그인 세션 잇어야됨.*/ "','" + "null','" + (fileName + "_thumbnail.jpg") + "')";
+
+            conn = new MySqlConnection(connStr);
+            cmd = new MySqlCommand(sql, conn);
+
+            conn.Open();
+            cmd.ExecuteNonQuery();
+
+            sql = "INSERT INTO VIDEO(VIDEO_NUM,KEYWORD,FILE_TYPE,RUNNING_TIME,FILE_PATH,THUMBNAIL_PATH,COUNT,AGE,SEX,JOB,INCIDENT,ERA,SEASON,DAY_TIME,PLACE) VALUES(" + 
+                + count + ",'" + /*키워드*/ "k','" + fileInfo + "','" + hours.ToString() + ":" + minutes.ToString() + ":" + seconds.ToString() +
+                 "','" + fileName + "','" + (fileName + "_thumbnail.jpg") + "'," + /*카운트인데*/ "1,'" + AgeList.SelectedItem.Text + "','" + SexList.SelectedItem.Text + "','" + 
+                 JobList.SelectedItem.Text + "','" + IncidList.SelectedItem.Text + "','" + EraList.SelectedItem.Text + "','" + SeasonList.SelectedItem.Text + "','" + 
+                 DayList.SelectedItem.Text + "','" + PlaceList.SelectedItem.Text + "')";
 
             conn = new MySqlConnection(connStr);
             cmd = new MySqlCommand(sql, conn);
@@ -300,26 +338,6 @@ public partial class Uploads : System.Web.UI.Page
             Label1.Text = "Error" + ex.Message.ToString();
         }
 
-
-        //VIDEO 테이블에
-        /*
-        KEYWORD
-        FILE_TYPE - 파일타입
-        RUNNING_TIME - 
-        FILE_PATH - 경로됫고
-        THUMBNAIL_PATH 
-        COUNT  - DB존재하는 파일 카운트
-
-        AGE - AgeList
-        SEX - SexList
-        JOB - JobList
-        INCIDENT - IncList
-        ERA - EraList
-        SEASON - SeasonList
-        DAY_TIME - DayList
-        PLACE - PlaceList 
-        */
-
         using (WebClient client = new WebClient())
         {
             client.Credentials = new NetworkCredential("dcs", "ghkdlxld");
@@ -328,10 +346,10 @@ public partial class Uploads : System.Web.UI.Page
             client.UploadFile("ftp://203.241.249.106" + "/" + new FileInfo(filePath + "_thumbnail.jpg").Name, "STOR", filePath + "_thumbnail.jpg");
         }
     }
+
     private string getDurationMedia(String FileName)
     {
         var mediaDet = (IMediaDet)new MediaDet();
-        Label1.Text = FileName;
         DsError.ThrowExceptionForHR(mediaDet.put_Filename(FileName));
 
         // find the video stream in the file
@@ -357,18 +375,11 @@ public partial class Uploads : System.Web.UI.Page
         double mediaLength;
         mediaDet.get_StreamLength(out mediaLength);
         var frameCount = (int)(frameRate * mediaLength);
-        var duration = frameCount / frameRate;
+        var duration = (int)(frameCount / frameRate);
 
 
 
         return duration.ToString();
-    }
-
-    protected void Button2_Click(object sender, EventArgs e)
-    {
-        
-        Label1.Text = Path.GetFileName(FileUpload1.PostedFile.FileName);
-        //Button2.Text = getDurationMedia("C:\\test\\Wildlife.wmv");          
     }
 
 

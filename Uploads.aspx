@@ -150,7 +150,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style15">
-                        <asp:DropDownList ID="JobCList" runat="server" Height="16px" Width="160px">
+                        <asp:DropDownList ID="JobCList" runat="server" Height="16px" Width="160px" AutoPostBack="True" OnSelectedIndexChanged="IncidCList_SelectedIndexChanged">
                         </asp:DropDownList>
                     </td>
                 </tr>
@@ -168,7 +168,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style20">
-                        <asp:DropDownList ID="IncidCList" runat="server" AutoPostBack="True" Height="16px"  Width="160px">
+                        <asp:DropDownList ID="IncidCList" runat="server" AutoPostBack="True" Height="16px"  Width="160px" OnSelectedIndexChanged="IncidCList_SelectedIndexChanged">
                         </asp:DropDownList>
                     </td>
                 </tr>
@@ -191,7 +191,6 @@
 &nbsp;&nbsp;
             <asp:Button ID="Button1" runat="server" Text="Upload" Width="82px" OnClick="Button1_Click" />
             <asp:Label ID="Label1" runat="server"></asp:Label>
-            <asp:Button ID="Button2" runat="server" Text="Check" Width="82px" OnClick="Button2_Click" style="height: 21px" />
         </td>
     </tr>
     <tr>
