@@ -27,8 +27,8 @@ public partial class _Default : System.Web.UI.Page
         {
             string id;
             string pass;
-            id = TextBox1.Text;
-            pass = TextBox2.Text;
+            id = TextBox2.Text;
+            pass = TextBox1.Text;
 
             conn = new MySqlConnection(connStr);
 
@@ -61,6 +61,11 @@ public partial class _Default : System.Web.UI.Page
         {
             Label1.Text = "Error";
         }
+
+    }
+
+    protected void TextBox1_TextChanged(object sender, EventArgs e)
+    {
 
     }
 }

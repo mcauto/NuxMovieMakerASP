@@ -20,6 +20,9 @@
         .auto-style3 {
             height: 529px;
         }
+        .auto-style4 {
+            height: 31px;
+        }
     </style>
 </head>
 <body>
@@ -41,15 +44,15 @@
                 </td>
             </tr>
             <tr>
-                <td style="background-color: #CCCCCC">
+                <td style="background-color: #CCCCCC" class="auto-style4">
                     <ul class="footer-left" style="box-sizing: border-box; margin: 0px; padding: 0px; color: rgb(102, 89, 92); font-family: 'Helvetica Neue', Helvetica, arial, freesans, clean, sans-serif; font-size: 16px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 27.2px; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(239, 234, 225);">
-                        <li style="box-sizing: border-box; display: inline-block; list-style-type: none; margin-right: 15px;"><a href="https://atom.io/terms" style="box-sizing: border-box; color: rgb(102, 89, 92); text-decoration: none;">Terms of Use</a><span class="Apple-converted-space">&nbsp;</span></li>
-                        <li style="box-sizing: border-box; display: inline-block; list-style-type: none; margin-right: 15px;"><a href="https://help.github.com/articles/github-privacy-policy/" style="box-sizing: border-box; color: rgb(102, 89, 92); text-decoration: none;">Privacy</a><span class="Apple-converted-space">&nbsp;</span></li>
-                        <li style="box-sizing: border-box; display: inline-block; list-style-type: none; margin-right: 15px;"><a href="http://contributor-covenant.org/version/1/2/0" style="box-sizing: border-box; color: rgb(102, 89, 92); text-decoration: none;">Code of Conduct</a><span class="Apple-converted-space">&nbsp;</span></li>
-                        <li style="box-sizing: border-box; display: inline-block; list-style-type: none; margin-right: 15px;"><a href="https://atom.io/releases" style="box-sizing: border-box; color: rgb(102, 89, 92); text-decoration: none;">Releases</a><span class="Apple-converted-space">&nbsp;</span></li>
-                        <li style="box-sizing: border-box; display: inline-block; list-style-type: none; margin-right: 15px;"><a href="https://atom.io/faq" style="box-sizing: border-box; color: rgb(102, 89, 92); text-decoration: none;">FAQ</a><span class="Apple-converted-space">&nbsp;</span></li>
-                        <li style="box-sizing: border-box; display: inline-block; list-style-type: none; margin-right: 15px;"><a href="https://atom.io/roadmap" style="box-sizing: border-box; color: rgb(102, 89, 92); text-decoration: none;">Roadmap</a><span class="Apple-converted-space">&nbsp;</span></li>
-                        <li style="box-sizing: border-box; display: inline-block; list-style-type: none; margin-right: 15px;"><a href="https://atom.io/contact" style="box-sizing: border-box; color: rgb(102, 89, 92); text-decoration: none;">Contact</a></li>
+                        <li style="box-sizing: border-box; display: inline-block; style="z-index: 1; list-style-type: none; margin-right: 15px;"TabIndex="10"><a href="https://atom.io/terms" style="box-sizing: border-box; color: rgb(102, 89, 92); text-decoration: none;">Terms of Use</a><span class="Apple-converted-space">&nbsp;</span></li>
+                        <li style="box-sizing: border-box; display: inline-block; style="z-index: 1;list-style-type: none; margin-right: 15px;"TabIndex="10"><a href="https://help.github.com/articles/github-privacy-policy/" style="box-sizing: border-box; color: rgb(102, 89, 92); text-decoration: none;">Privacy</a><span class="Apple-converted-space">&nbsp;</span></li>
+                        <li style="box-sizing: border-box; display: inline-block; style="z-index: 1;list-style-type: none; margin-right: 15px;"TabIndex="10"><a href="http://contributor-covenant.org/version/1/2/0" style="box-sizing: border-box; color: rgb(102, 89, 92); text-decoration: none;">Code of Conduct</a><span class="Apple-converted-space">&nbsp;</span></li>
+                        <li style="box-sizing: border-box; display: inline-block; style="z-index: 1;list-style-type: none; margin-right: 15px;"TabIndex="10"><a href="https://atom.io/releases" style="box-sizing: border-box; color: rgb(102, 89, 92); text-decoration: none;">Releases</a><span class="Apple-converted-space">&nbsp;</span></li>
+                        <li style="box-sizing: border-box; display: inline-block; style="z-index: 1;list-style-type: none; margin-right: 15px;"TabIndex="10"><a href="https://atom.io/faq" style="box-sizing: border-box; color: rgb(102, 89, 92); text-decoration: none;">FAQ</a><span class="Apple-converted-space">&nbsp;</span></li>
+                        <li style="box-sizing: border-box; display: inline-block; style="z-index: 1;list-style-type: none; margin-right: 15px;"TabIndex="10"><a href="https://atom.io/roadmap" style="box-sizing: border-box; color: rgb(102, 89, 92); text-decoration: none;">Roadmap</a><span class="Apple-converted-space">&nbsp;</span></li>
+                        <li style="box-sizing: border-box; display: inline-block; style="z-index: 1;list-style-type: none; margin-right: 15px;"TabIndex="10"><a href="https://atom.io/contact" style="box-sizing: border-box; color: rgb(102, 89, 92); text-decoration: none;">Contact</a></li>
                     </ul>
                 </td>
             </tr>

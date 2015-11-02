@@ -285,7 +285,7 @@ public partial class Uploads : System.Web.UI.Page
             count++;
 
             string sql = "INSERT INTO UPLOAD_VIDEO(VIDEO_NUM,TITLE,FILE_TYPE,RUNNING_TIME,FILE_PATH,MADE_BY,CATEGORY,THUMBNAIL_PATH) VALUES(" +
-                count + ",'" + fileName + "','" + fileInfo + "','" + /*시간*/"','" + "/Data/"+fileName + "','" + /*사용자(로그인)ID*/ "','" + "null','" + "/Thumb/"+(fileName + "_thumbnail.jpg") + "')";
+                count + ",'" + fileName + "','" + fileInfo + "','" + /*시간*/"','" + fileName + "','" + /*사용자(로그인)ID*/ "','" + "null','" + (fileName + "_thumbnail.jpg") + "')";
 
             conn = new MySqlConnection(connStr);
             cmd = new MySqlCommand(sql, conn);
@@ -323,11 +323,10 @@ public partial class Uploads : System.Web.UI.Page
         using (WebClient client = new WebClient())
         {
             client.Credentials = new NetworkCredential("dcs", "ghkdlxld");
-            client.UploadFile("ftp://203.241.249.106" + "/Data/" + new FileInfo(filePath).Name, "STOR", filePath);
+            client.UploadFile("ftp://203.241.249.106" + "/" + new FileInfo(filePath).Name, "STOR", filePath);
             (new NReco.VideoConverter.FFMpegConverter()).GetVideoThumbnail(filePath, filePath + "_thumbnail.jpg");
-            client.UploadFile("ftp://203.241.249.106" + "/Thumb/" + new FileInfo(filePath + "_thumbnail.jpg").Name, "STOR", filePath + "_thumbnail.jpg");
+            client.UploadFile("ftp://203.241.249.106" + "/" + new FileInfo(filePath + "_thumbnail.jpg").Name, "STOR", filePath + "_thumbnail.jpg");
         }
-
     }
     private string getDurationMedia(String FileName)
     {
