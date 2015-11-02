@@ -105,7 +105,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style21">
-                        <asp:DropDownList ID="AreaList" runat="server" AutoPostBack="True" Height="16px"  Width="160px">
+                        <asp:DropDownList ID="AreaList" runat="server" AutoPostBack="True" Height="16px"  Width="160px" OnSelectedIndexChanged="DropDownList3_SelectedIndexChanged">
                         </asp:DropDownList>
                     </td>
                 </tr>
