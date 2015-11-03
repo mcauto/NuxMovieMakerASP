@@ -22,11 +22,15 @@ public partial class Uploads : System.Web.UI.Page
     private MySqlConnection conn;
     private MySqlCommand cmd;
     string connStr = String.Format("server=203.241.249.106;user id=root;pwd=ghkdlxld;database=PRACTICE");
-
+    string currentID;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
+            if (Session["id"] != null)
+                currentID = Session["id"].ToString();
+            else
+                currentID = "none";
             conn = new MySqlConnection(connStr);
             try
             {
@@ -308,22 +312,12 @@ public partial class Uploads : System.Web.UI.Page
                 ds.Reset();
             }
             count++;
-
+            string category = DayList.SelectedItem.Text + "," + EraList.SelectedItem.Text + "," +  PlaceList.SelectedItem.Text + "," + 
+                SeasonList.SelectedItem.Text + "," + AgeList.SelectedItem.Text + "," + SexList.SelectedItem.Text + "," + JobList.SelectedItem.Text + "," +
+                IncidList.SelectedItem.Text;
             string sql = "INSERT INTO UPLOAD_VIDEO(VIDEO_NUM,TITLE,FILE_TYPE,RUNNING_TIME,FILE_PATH,MADE_BY,CATEGORY,THUMBNAIL_PATH) VALUES(" +
                 count + ",'" + fileName + "','" + fileInfo + "','" + hours.ToString() + ":" + minutes.ToString() + ":" + seconds.ToString() + 
-                "','" + fileName + "','" + /*Session["id"].ToString() + 이거 로그인 세션 잇어야됨.*/ "','" + "null','" + (fileName + "_thumbnail.jpg") + "')";
-
-            conn = new MySqlConnection(connStr);
-            cmd = new MySqlCommand(sql, conn);
-
-            conn.Open();
-            cmd.ExecuteNonQuery();
-
-            sql = "INSERT INTO VIDEO(VIDEO_NUM,KEYWORD,FILE_TYPE,RUNNING_TIME,FILE_PATH,THUMBNAIL_PATH,COUNT,AGE,SEX,JOB,INCIDENT,ERA,SEASON,DAY_TIME,PLACE) VALUES(" + 
-                + count + ",'" + /*키워드*/ "k','" + fileInfo + "','" + hours.ToString() + ":" + minutes.ToString() + ":" + seconds.ToString() +
-                 "','" + fileName + "','" + (fileName + "_thumbnail.jpg") + "'," + /*카운트인데*/ "1,'" + AgeList.SelectedItem.Text + "','" + SexList.SelectedItem.Text + "','" + 
-                 JobList.SelectedItem.Text + "','" + IncidList.SelectedItem.Text + "','" + EraList.SelectedItem.Text + "','" + SeasonList.SelectedItem.Text + "','" + 
-                 DayList.SelectedItem.Text + "','" + PlaceList.SelectedItem.Text + "')";
+                "','" + fileName + "','" + currentID + "','" + category + "','" + (fileName + "_thumbnail.jpg") + "')";
 
             conn = new MySqlConnection(connStr);
             cmd = new MySqlCommand(sql, conn);
