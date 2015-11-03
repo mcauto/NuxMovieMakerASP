@@ -287,8 +287,8 @@ public partial class Uploads : System.Web.UI.Page
         string[] fileExtention = fileName.Split('.'); // 파일 이름을 .으로 분리        
         string fileInfo = fileExtention[1];//파일 확장자
 
-        string timeStr = getDurationMedia(FileUpload1.PostedFile.FileName);
-        int hours = int.Parse(timeStr) / 3600, minutes = (int.Parse(timeStr) % 3600 / 60), seconds = (int.Parse(timeStr) % 3600 % 60);
+        //String timeStr = getDurationMedia(filePath);
+        //int hours = int.Parse(timeStr) / 3600, minutes = (int.Parse(timeStr) % 3600 / 60), seconds = (int.Parse(timeStr) % 3600 % 60);
 
         conn = new MySqlConnection(connStr);
         try
@@ -315,9 +315,11 @@ public partial class Uploads : System.Web.UI.Page
             string category = DayList.SelectedItem.Text + "," + EraList.SelectedItem.Text + "," +  PlaceList.SelectedItem.Text + "," + 
                 SeasonList.SelectedItem.Text + "," + AgeList.SelectedItem.Text + "," + SexList.SelectedItem.Text + "," + JobList.SelectedItem.Text + "," +
                 IncidList.SelectedItem.Text;
-            string sql = "INSERT INTO UPLOAD_VIDEO(VIDEO_NUM,TITLE,FILE_TYPE,RUNNING_TIME,FILE_PATH,MADE_BY,CATEGORY,THUMBNAIL_PATH) VALUES(" +
-                count + ",'" + fileName + "','" + fileInfo + "','" + hours.ToString() + ":" + minutes.ToString() + ":" + seconds.ToString() + 
-                "','" + fileName + "','" + currentID + "','" + category + "','" + (fileName + "_thumbnail.jpg") + "')";
+            //string sql = "INSERT INTO UPLOAD_VIDEO(VIDEO_NUM,TITLE,FILE_TYPE,RUNNING_TIME,FILE_PATH,MADE_BY,CATEGORY,THUMBNAIL_PATH) VALUES(" +
+            //    count + ",'" + fileName + "','" + fileInfo + "','" + hours.ToString() + ":" + minutes.ToString() + ":" + seconds.ToString() + 
+            //    "','" + fileName + "','" + currentID + "','" + category + "','" + (fileName + "_thumbnail.jpg") + "')";
+            string sql = "INSERT INTO UPLOAD_VIDEO(VIDEO_NUM,TITLE,FILE_TYPE,FILE_PATH,MADE_BY,CATEGORY,THUMBNAIL_PATH) VALUES(" +
+               count + ",'" + fileName + "','" + fileInfo + "','" + fileName + "','" + currentID + "','" + category + "','" + (fileName + "_thumbnail.jpg") + "')";
 
             conn = new MySqlConnection(connStr);
             cmd = new MySqlCommand(sql, conn);
@@ -336,7 +338,7 @@ public partial class Uploads : System.Web.UI.Page
         {
             client.Credentials = new NetworkCredential("dcs", "ghkdlxld");
             client.UploadFile("ftp://203.241.249.106" + "/" + new FileInfo(filePath).Name, "STOR", filePath);
-            (new NReco.VideoConverter.FFMpegConverter()).GetVideoThumbnail(filePath, filePath + "_thumbnail.jpg");
+            (new NReco.VideoConverter.FFMpegConverter()).GetVideoThumbnail(filePath, filePath + "_thumbnail.jpg");            
             client.UploadFile("ftp://203.241.249.106" + "/" + new FileInfo(filePath + "_thumbnail.jpg").Name, "STOR", filePath + "_thumbnail.jpg");
         }
     }

@@ -150,7 +150,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style15">
-                        <asp:DropDownList ID="JobCList" runat="server" Height="16px" Width="160px" AutoPostBack="True" OnSelectedIndexChanged="IncidCList_SelectedIndexChanged">
+                        <asp:DropDownList ID="JobCList" runat="server" Height="16px" Width="160px" AutoPostBack="True" OnSelectedIndexChanged="DropDownList3_SelectedIndexChanged">
                         </asp:DropDownList>
                     </td>
                 </tr>
